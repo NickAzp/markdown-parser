@@ -9,50 +9,23 @@ public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-        int currentIndex = 0;
-        int PreviousIndex = 0;
-        int iteration = 1;
-        for(int i = 0; i < markdown.length()-1; i++) {
-            if((markdown.charAt(i)+""+markdown.charAt(i+1)).equals("](")) {
-                PreviousIndex = i+2;
-                for(int j = PreviousIndex; j < markdown.length()-3; j++) {
-                    int condition = 1;
-                    if((condition == -1) && (markdown.charAt(j)+""+markdown.charAt(j+3)).equals(")[") || ((markdown.charAt(j+3) == (')')) && (j+4 == markdown.length()))) {
-                        condition = -1;
-                        currentIndex = j+3;
-                        System.out.println(PreviousIndex);
-                        System.out.println(currentIndex);
-                        toReturn.add(markdown.substring(PreviousIndex, currentIndex));
-                    }
-                }
+        int linkCount = 0;
+        String testString = markdown;
+        for( int i = 0; i < markdown.length(); i++) {
+            if( testString.indexOf("](") != -1) {
+                linkCount++;
+                testString = testString.substring(testString.indexOf("](")+2, testString.length());
             }
-        }
-        /*
-        // find the next [, then find the ], then find the (, then read link upto next )
-        while(currentIndex < markdown.indexOf(")",markdown.length()-2)) {
-            PreviousIndex = markdown.indexOf("](", currentIndex);
-            if(markdown.indexOf(")", currentIndex) - markdown.indexOf("[", currentIndex) == -3) {
-                currentIndex = markdown.indexOf("[", PreviousIndex);
-                toReturn.add(markdown.substring(PreviousIndex, currentIndex));
-                
+        } 
+
+        for(int i = 0; i < linkCount; i++) {
+            if (i+1 != linkCount) {
+                toReturn.add(markdown.substring(markdown.indexOf("](")+2, markdown.indexOf("[", markdown.indexOf("](")+2)-3));
+                markdown = markdown.substring(markdown.indexOf("](")+2, markdown.length());
             } else {
-                currentIndex = markdown.indexOf(")")+iteration;
-                iteration++;
+                toReturn.add(markdown.substring(markdown.indexOf("](")+2,markdown.length()-1));
             }
-            
-            
-            currentIndex = markdown.indexOf(")", openParen);
-            int openBracket = markdown.indexOf("[", currentIndex);
-            int closeBracket = markdown.indexOf("]", openBracket);
-            int openParen = markdown.indexOf("(", closeBracket);
-            int closeParen = markdown.indexOf(")", openParen);
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
-            currentIndex = closeParen + 1;
         }
-            */
-        
-        // toReturn.add(markdown.substring(markdown.indexOf("]("), markdown.length()));
-       //  return toReturn; // markdown.substring(markdown.indexOf("]("), markdown.length));
        return toReturn;
     }
 
