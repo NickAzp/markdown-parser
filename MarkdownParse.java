@@ -10,6 +10,7 @@ public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         int linkCount = 0;
+        markdown = markdown.substring(0,markdown.length()-1);
         String testString = markdown;
         for( int i = 0; i < markdown.length(); i++) {
             if( testString.indexOf("](") != -1) {
