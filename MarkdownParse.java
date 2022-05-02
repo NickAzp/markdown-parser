@@ -16,7 +16,7 @@ public class MarkdownParse {
                 linkCount++;
                 testString = testString.substring(testString.indexOf("](")+2, testString.length());
             }
-        } 
+        }
 
         for(int i = 0; i < linkCount; i++) {
             if (i+1 != linkCount) {
