@@ -11,7 +11,7 @@ public class MarkdownParse {
         ArrayList<String> toReturn = new ArrayList<>();
         int linkCount = 0;
         String testString = markdown;
-        markdown = markdown.substring(0,markdown.length()-1);
+        
         for( int i = 0; i < markdown.length(); i++) {
             if( testString.indexOf("](") != -1) {
                 linkCount++;
