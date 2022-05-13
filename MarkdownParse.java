@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 public class MarkdownParse {
 
+    
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         int linkCount = 0;
+        int testa = 0;
         String testString = markdown;
         
         for(int i = 0; i < markdown.length(); i++) {
@@ -20,7 +22,7 @@ public class MarkdownParse {
                 markdown = markdown.substring(0, markdown.length()-1);
             } 
         }
-        
+        // test
         for( int i = 0; i < markdown.length(); i++) {
             if( testString.indexOf("](") != -1) {
                 linkCount++;
