@@ -12,6 +12,15 @@ public class MarkdownParse {
         int linkCount = 0;
         String testString = markdown;
         
+        for(int i = 0; i < markdown.length(); i++) {
+            String checkstring = markdown.substring(markdown.length()-2-i,markdown.length()-i);
+            if (!(checkstring.contains(System.getProperty("line.separator")))) {
+                break;
+            } else {
+                markdown = markdown.substring(0, markdown.length()-1);
+            } 
+        }
+        
         for( int i = 0; i < markdown.length(); i++) {
             if( testString.indexOf("](") != -1) {
                 linkCount++;
